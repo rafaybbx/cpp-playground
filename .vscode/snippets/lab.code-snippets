@@ -1,0 +1,26 @@
+{
+  "New Lab Template": {
+    "prefix": "newlab",
+    "body": [
+      "#include <iostream>",
+      "",
+      "namespace lab {",
+      "namespace ${1:topic} {",
+      "",
+      "void run()",
+      "{",
+      "    // Topic: ${2:short topic name}",
+      "    // Goal: ${3:what you want to test}",
+      "    // Notes: ${4:expected behavior or notes}",
+      "",
+      "    std::cout << \"=== ${2:Topic} Lab ===\\n\";",
+      "",
+      "    // Your experiment code here",
+      "}",
+      "",
+      "} // namespace ${1:topic}",
+      "} // namespace lab"
+    ],
+    "description": "Scaffold a new lab file with namespace and run() entry point"
+  }
+}

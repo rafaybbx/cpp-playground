@@ -1,0 +1,26 @@
+{
+  "New Lab from Template": {
+    "prefix": "newlab",
+    "body": [
+      "#include <iostream>",
+      "",
+      "namespace lab {",
+      "namespace ${1:topic} {",
+      "",
+      "void run()",
+      "{",
+      "    // Topic: ${2:short description}",
+      "    // Goal: ${3:what you want to test}",
+      "",
+      "    std::cout << \"=== ${2:Lab} ===\\n\";",
+      "",
+      "    // your code here",
+      "}",
+      "",
+      "} // namespace ${1:topic}",
+      "} // namespace lab",
+      ""
+    ],
+    "description": "Scaffold a new lab file with the required run() function and namespace. Copy this file into labs/ and register it in core/lab_registry.cpp."
+  }
+}

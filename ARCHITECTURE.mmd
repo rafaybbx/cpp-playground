@@ -1,0 +1,26 @@
+flowchart TD
+  A[User] -->|runs| B[c++ executable]
+  B --> C[core/main.cpp]
+  C --> D[core/lab_registry.cpp]
+  D --> E[labs/*_lab.cpp]
+  E -->|executes| F[lab::topic::run()]
+  F --> G[prints output / comments]
+
+  subgraph Workspace
+    C
+    D
+    E
+  end
+flowchart TD
+  A[User] -->|runs| B[c++ executable]
+  B --> C[core/main.cpp]
+  C --> D[core/lab_registry.cpp]
+  D --> E[labs/*_lab.cpp]
+  E -->|executes| F[lab::topic::run()]
+  F --> G[prints output / comments]
+
+  subgraph Workspace
+    C
+    D
+    E
+  end

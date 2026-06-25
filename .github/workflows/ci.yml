@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, 'feat/**', 'feat/*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure CMake (dev preset)
+        run: cmake --preset dev
+
+      - name: Build
+        run: cmake --build --preset dev
+
+  render-diagram:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install mermaid-cli
+        run: npm install -g @mermaid-js/mermaid-cli
+
+      - name: Render ARCHITECTURE.mmd to PNG
+        run: |
+          mkdir -p docs
+          mmdc -i ARCHITECTURE.mmd -o docs/architecture.png || true
+
+      - name: Upload diagram artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: architecture-diagram
+          path: docs/architecture.png
+name: CI
+
+on:
+  push:
+    branches: ['main', 'feature/*', 'lab-*']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure CMake
+        run: |
+          cmake --version
+          cmake -S . -B build
+
+      - name: Build
+        run: cmake --build build -- -j 2
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp_playground
+          path: build/cpp_playground
+
+  render-diagram:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install mermaid-cli
+        run: npm install -g @mermaid-js/mermaid-cli
+
+      - name: Render architecture diagram
+        run: |
+          if [ -f ARCHITECTURE.mmd ]; then
+            mmdc -i ARCHITECTURE.mmd -o architecture.svg || true
+            mmdc -i ARCHITECTURE.mmd -o architecture.png || true
+          else
+            echo "ARCHITECTURE.mmd not found"
+          fi
+
+      - name: Upload diagram artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: architecture-diagrams
+          path: |
+            architecture.svg
+            architecture.png
