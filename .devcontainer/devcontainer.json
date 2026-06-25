@@ -4,6 +4,20 @@
 	"name": "C++",
 	"build": {
 		"dockerfile": "Dockerfile"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools-extension-pack",
+				"Anthropic.claude-code",
+				"ms-vscode.cmake-tools",
+				"ms-vscode.cpptools-themes",
+				"ms-vscode.cpp-devtools",
+				"ms-vscode.cpptools",
+				"mateocerquetella.xcode-12-theme",
+				"evan-buss.font-switcher"
+			]
+		}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
