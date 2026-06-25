@@ -1,0 +1,24 @@
+# Compiled executables
+main
+*.out
+*.exe
+
+# Object and static/shared library files
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.dylib
+
+# Debug/build artifacts
+*.dSYM/
+*.stackdump
+
+# CMake and other build directories
+build/
+cmake-build-*/
+
+# OS files
+.DS_Store
+Thumbs.db
